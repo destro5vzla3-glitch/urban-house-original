@@ -1,0 +1,14 @@
+# Compresión GZIP
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json
+</IfModule>
+
+# Cache de imágenes
+<FilesMatch "\.(jpg|jpeg|png|gif|ico|svg)$">
+  Header set Cache-Control "max-age=2592000, public"
+</FilesMatch>
+
+# Redirección a HTTPS
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
