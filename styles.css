@@ -344,101 +344,20 @@ a, button {
 .items-center { align-items: center; }
 
 /* ============================================================
-   ESTILOS ESTILO FACEBOOK PARA PERFILES DE ARTISTAS
+   PERFIL DE ARTISTA (estructura Facebook + estilo brutalista)
    ============================================================ */
 
-/* ===== CONTENEDOR PRINCIPAL ===== */
-.fb-profile-container {
-  max-width: 100%;
-  background-color: #f0f2f5;
-  min-height: 100vh;
-  font-family: var(--font-sans);
-}
-
-/* ===== NAVEGACIÓN ESTILO FACEBOOK ===== */
-.fb-nav {
-  background-color: var(--color-bg);
-  border-bottom: 1px solid var(--color-border);
-  padding: 0.8rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.fb-nav-left {
-  display: flex;
-  align-items: center;
-}
-
-.fb-nav-logo {
-  font-size: 1.4rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  color: var(--color-fg);
-  text-decoration: none;
-  text-transform: uppercase;
-}
-
-.fb-nav-center {
-  display: flex;
-  gap: 2rem;
-}
-
-.fb-nav-link {
-  color: var(--color-fg);
-  text-decoration: none;
-  font-size: 0.95rem;
-  font-weight: 400;
-  padding: 0.4rem 0.8rem;
-  border-radius: 4px;
-  transition: all var(--transition);
-}
-
-.fb-nav-link:hover {
-  background-color: #f0f0f0;
-}
-
-.fb-nav-link.active {
-  background-color: var(--color-fg);
-  color: var(--color-bg);
-}
-
-.fb-nav-right {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.fb-nav-user {
-  font-size: 1.2rem;
-  opacity: 0.7;
-}
-
-/* ===== PERFIL ===== */
-.fb-profile {
-  max-width: 1100px;
-  margin: 0 auto;
-  background-color: var(--color-bg);
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  overflow: hidden;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-}
-
 /* ===== BANNER (COVER) ===== */
-.fb-cover {
+.artist-cover {
   width: 100%;
-  height: 320px;
-  background-color: #d0d0d0;
+  height: 300px;
+  background-color: #f0f0f0;
   overflow: hidden;
-  position: relative;
+  border: 1px solid var(--color-border);
+  border-bottom: none;
 }
 
-.fb-cover-img {
+.artist-cover-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -446,38 +365,39 @@ a, button {
   transition: filter var(--transition);
 }
 
-.fb-profile:hover .fb-cover-img {
+.artist-profile:hover .artist-cover-img {
   filter: grayscale(0%);
 }
 
-/* ===== INFO DEL PERFIL ===== */
-.fb-profile-info {
+/* ===== INFO DEL PERFIL (superpuesta) ===== */
+.artist-profile-header {
   display: flex;
   align-items: flex-end;
   padding: 0 2rem 1.5rem;
-  position: relative;
   background-color: var(--color-bg);
-  border-bottom: 1px solid var(--color-border);
+  border: 1px solid var(--color-border);
+  border-top: none;
   flex-wrap: wrap;
+  position: relative;
 }
 
-/* Avatar */
-.fb-avatar-wrapper {
-  width: 168px;
-  height: 168px;
+/* Avatar superpuesto */
+.artist-avatar-wrapper {
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
   border: 4px solid var(--color-bg);
   background-color: var(--color-bg);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
-  margin-top: -84px;
+  margin-top: -70px;
   margin-right: 1.5rem;
   overflow: hidden;
   flex-shrink: 0;
   position: relative;
   z-index: 2;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
 }
 
-.fb-avatar {
+.artist-avatar {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -486,277 +406,216 @@ a, button {
   transition: filter var(--transition);
 }
 
-.fb-profile:hover .fb-avatar {
+.artist-profile:hover .artist-avatar {
   filter: grayscale(0%);
 }
 
-/* Datos del artista */
-.fb-profile-details {
+/* Detalles del artista */
+.artist-profile-details {
   flex: 1;
   padding: 0.5rem 0;
   min-width: 200px;
 }
 
-.fb-name {
+.artist-profile-details h1 {
   font-size: 2.4rem;
-  font-weight: 500;
+  font-weight: 400;
   margin: 0;
-  line-height: 1.2;
+  letter-spacing: 0.04em;
 }
 
-.fb-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 1.5rem;
-  margin: 0.2rem 0;
+.artist-profile-details .artist-genre {
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.6;
+  margin: 0.2rem 0 0.1rem;
 }
 
-.fb-genre {
-  font-size: 0.9rem;
-  opacity: 0.7;
-}
-
-.fb-location {
+.artist-profile-details .artist-location {
   font-size: 0.85rem;
   opacity: 0.5;
-}
-
-.fb-bio {
-  margin: 0.8rem 0;
-  max-width: 600px;
-}
-
-.fb-bio p {
-  font-size: 0.95rem;
-  line-height: 1.5;
   margin: 0;
+}
+
+.artist-bio {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0.8rem 0;
   opacity: 0.8;
 }
 
-/* Redes sociales (botones) */
-.fb-social-links {
+.artist-social-links {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
   margin-top: 0.5rem;
 }
 
-.fb-social-btn {
-  display: inline-block;
-  background-color: transparent;
-  color: var(--color-fg);
-  border: 1px solid var(--color-border);
+.artist-social-links .btn {
+  font-size: 0.65rem;
   padding: 0.3rem 0.8rem;
-  font-size: 0.7rem;
-  font-weight: 400;
-  letter-spacing: 0.04em;
-  text-decoration: none;
-  text-transform: uppercase;
-  border-radius: 4px;
-  transition: all var(--transition);
 }
 
-.fb-social-btn:hover {
-  background-color: var(--color-fg);
-  color: var(--color-bg);
-  border-color: var(--color-fg);
-}
-
-/* Botones de acción */
-.fb-action-buttons {
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-  margin-left: auto;
-  padding-bottom: 0.3rem;
-  flex-shrink: 0;
-}
-
-.fb-follow-btn {
-  background-color: var(--color-fg);
-  color: var(--color-bg);
-  border: 1px solid var(--color-fg);
-  padding: 0.5rem 1.2rem;
-  font-size: 0.85rem;
-  font-weight: 500;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all var(--transition);
-}
-
-.fb-follow-btn:hover {
-  background-color: var(--color-bg);
-  color: var(--color-fg);
-}
-
-.fb-message-btn {
-  background-color: transparent;
-  color: var(--color-fg);
-  border: 1px solid var(--color-border);
-  padding: 0.5rem 1.2rem;
-  font-size: 0.85rem;
-  font-weight: 400;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all var(--transition);
-}
-
-.fb-message-btn:hover {
-  background-color: var(--color-fg);
-  color: var(--color-bg);
-  border-color: var(--color-fg);
-}
-
-/* ===== CONTENIDO PRINCIPAL (Timeline) ===== */
-.fb-content {
+/* ===== CONTENIDO PRINCIPAL (grid) ===== */
+.artist-content {
   display: flex;
   gap: 1.5rem;
+  padding: 1.5rem 0;
+  border: 1px solid var(--color-border);
+  border-top: none;
+  background-color: var(--color-bg);
   padding: 1.5rem 2rem;
-  background-color: #f0f2f5;
 }
 
-/* Columna izquierda */
-.fb-left-column {
-  flex: 0 0 300px;
+.artist-sidebar {
+  flex: 0 0 280px;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
-/* Columna derecha */
-.fb-right-column {
+.artist-main {
   flex: 1;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
-/* ===== TARJETAS (CARDS) ===== */
-.fb-card {
-  background-color: var(--color-bg);
+/* ===== TARJETAS ===== */
+.artist-card {
   border: 1px solid var(--color-border);
-  border-radius: 8px;
   padding: 1.2rem 1.5rem;
+  background-color: var(--color-bg);
 }
 
-.fb-card-title {
-  font-size: 1rem;
-  font-weight: 500;
+.artist-card-title {
+  font-size: 0.9rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   border-bottom: 1px solid var(--color-border);
   padding-bottom: 0.6rem;
   margin-bottom: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
 }
 
 /* Lista de información */
-.fb-info-list {
+.artist-info-list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.fb-info-list li {
-  font-size: 0.9rem;
+.artist-info-list li {
+  font-size: 0.85rem;
   padding: 0.4rem 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-.fb-info-list li:last-child {
+.artist-info-list li:last-child {
   border-bottom: none;
 }
 
-.fb-info-list li strong {
+.artist-info-list li strong {
   font-weight: 500;
 }
 
 /* Lista de eventos */
-.fb-event-list {
+.artist-event-list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.fb-event-item {
+.artist-event-item {
   display: flex;
   flex-direction: column;
-  padding: 0.6rem 0;
+  padding: 0.4rem 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-.fb-event-item:last-child {
+.artist-event-item:last-child {
   border-bottom: none;
 }
 
-.fb-event-date {
-  font-size: 0.8rem;
+.artist-event-date {
+  font-size: 0.75rem;
   opacity: 0.6;
 }
 
-.fb-event-name {
-  font-size: 0.95rem;
+.artist-event-name {
+  font-size: 0.9rem;
 }
 
 /* ===== PUBLICACIONES (POSTS) ===== */
-.fb-post {
-  background-color: var(--color-bg);
+.artist-post {
   border: 1px solid var(--color-border);
-  border-radius: 8px;
   padding: 1rem 1.2rem;
   margin-bottom: 1rem;
+  background-color: var(--color-bg);
 }
 
-.fb-post:last-child {
+.artist-post:last-child {
   margin-bottom: 0;
 }
 
-.fb-post-header {
+.artist-post-header {
   display: flex;
   align-items: center;
   gap: 0.8rem;
   margin-bottom: 0.8rem;
+  flex-wrap: wrap;
 }
 
-.fb-post-avatar {
-  width: 40px;
-  height: 40px;
+.artist-post-avatar {
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   object-fit: cover;
+  border: 1px solid var(--color-border);
+  filter: grayscale(100%);
 }
 
-.fb-post-user {
+.artist-post-user {
   display: flex;
   flex-direction: column;
+  flex: 1;
 }
 
-.fb-post-user strong {
-  font-size: 0.95rem;
+.artist-post-user strong {
+  font-size: 0.9rem;
   font-weight: 500;
 }
 
-.fb-post-user span {
-  font-size: 0.75rem;
+.artist-post-user span {
+  font-size: 0.7rem;
   opacity: 0.5;
 }
 
-.fb-post-content p {
-  font-size: 0.95rem;
+.artist-post-date {
+  font-size: 0.7rem;
+  opacity: 0.4;
+}
+
+.artist-post-content p {
+  font-size: 0.9rem;
   line-height: 1.5;
   margin: 0 0 0.8rem 0;
 }
 
-.fb-post-image-placeholder {
-  background-color: #eaeaea;
+.artist-post-image {
+  background-color: #f5f5f5;
   border: 1px solid var(--color-border);
-  border-radius: 4px;
-  padding: 2rem;
+  padding: 1.5rem;
   text-align: center;
-  color: #888;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   letter-spacing: 0.08em;
+  color: #888;
+  text-transform: uppercase;
 }
 
-.fb-post-actions {
+.artist-post-actions {
   display: flex;
   gap: 1.5rem;
   margin-top: 0.8rem;
@@ -764,128 +623,99 @@ a, button {
   border-top: 1px solid var(--color-border);
 }
 
-.fb-post-btn {
+.artist-post-btn {
   background: none;
   border: none;
   color: var(--color-fg);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   padding: 0.2rem 0.4rem;
   cursor: pointer;
-  opacity: 0.6;
+  opacity: 0.5;
   transition: all var(--transition);
+  font-family: var(--font-sans);
 }
 
-.fb-post-btn:hover {
+.artist-post-btn:hover {
   opacity: 1;
   background-color: #f0f0f0;
-  border-radius: 4px;
-}
-
-/* ===== FOOTER ===== */
-.fb-footer {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 1.5rem 2rem;
-  font-size: 0.7rem;
-  letter-spacing: 0.1em;
-  text-align: right;
-  opacity: 0.5;
-  color: var(--color-fg);
 }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 900px) {
-  .fb-content {
+  .artist-content {
     flex-direction: column;
+    padding: 1rem;
   }
   
-  .fb-left-column {
+  .artist-sidebar {
     flex: 1;
   }
   
-  .fb-profile-info {
+  .artist-profile-header {
     flex-direction: column;
     align-items: center;
     text-align: center;
     padding: 0 1.5rem 1.5rem;
   }
   
-  .fb-avatar-wrapper {
-    margin-top: -60px;
-    width: 120px;
-    height: 120px;
+  .artist-avatar-wrapper {
+    margin-top: -50px;
+    width: 110px;
+    height: 110px;
+    margin-right: 0;
   }
   
-  .fb-profile-details {
+  .artist-profile-details {
     text-align: center;
   }
   
-  .fb-meta {
+  .artist-social-links {
     justify-content: center;
   }
   
-  .fb-social-links {
-    justify-content: center;
-  }
-  
-  .fb-action-buttons {
-    margin-left: 0;
-    justify-content: center;
-    width: 100%;
-  }
-  
-  .fb-name {
+  .artist-profile-details h1 {
     font-size: 1.8rem;
+  }
+  
+  .artist-bio {
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
 @media (max-width: 640px) {
-  .fb-nav {
-    flex-direction: column;
-    gap: 0.5rem;
-    padding: 0.6rem 1rem;
-  }
-  
-  .fb-nav-center {
-    gap: 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  .fb-cover {
+  .artist-cover {
     height: 150px;
   }
   
-  .fb-avatar-wrapper {
-    width: 100px;
-    height: 100px;
-    margin-top: -50px;
+  .artist-avatar-wrapper {
+    width: 90px;
+    height: 90px;
+    margin-top: -40px;
   }
   
-  .fb-profile-info {
+  .artist-profile-header {
     padding: 0 1rem 1.2rem;
   }
   
-  .fb-content {
-    padding: 1rem;
-  }
-  
-  .fb-card {
-    padding: 1rem;
-  }
-  
-  .fb-name {
+  .artist-profile-details h1 {
     font-size: 1.5rem;
   }
   
-  .fb-action-buttons {
-    flex-direction: column;
-    width: 100%;
+  .artist-content {
+    padding: 0.8rem;
   }
   
-  .fb-follow-btn,
-  .fb-message-btn {
-    width: 100%;
-    text-align: center;
+  .artist-card {
+    padding: 0.8rem 1rem;
+  }
+  
+  .artist-post {
+    padding: 0.8rem;
+  }
+  
+  .artist-post-actions {
+    gap: 0.8rem;
+    flex-wrap: wrap;
   }
 }
