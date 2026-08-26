@@ -6,24 +6,98 @@
 document.addEventListener('DOMContentLoaded', function() {
 
   // ============================================================
-  // 1. RESALTAR PÁGINA ACTIVA EN EL MENÚ (con soporte para subcarpetas)
+  // 1. RESALTAR PÁGINA ACTIVA EN EL MENÚ
   // ============================================================
   const currentPath = window.location.pathname;
-  const navLinks = document.querySelectorAll('.nav a');
+  const navLinks = document.querySelectorAll('.fb-nav-link, .nav a');
   
   navLinks.forEach(link => {
     const href = link.getAttribute('href');
-    // Para enlaces en subcarpetas (../index.html)
-    const cleanHref = href.replace(/\.\.\//g, '');
-    const cleanPath = currentPath.replace(/\/[^/]*\.html$/, '/') + cleanHref;
-    
-    if (currentPath.includes(cleanHref) || href === currentPath) {
-      link.classList.add('active');
+    if (href) {
+      const cleanHref = href.replace(/\.\.\//g, '');
+      if (currentPath.includes(cleanHref) || href === currentPath) {
+        link.classList.add('active');
+      }
     }
   });
 
   // ============================================================
-  // 2. CARRUSEL: DRAG PARA DESPLAZAR
+  // 2. BOTONES DE SEGUIR / MENSAJE (acción en la misma página)
+  // ============================================================
+  const followBtn = document.querySelector('.fb-follow-btn');
+  if (followBtn) {
+    followBtn.addEventListener('click', function() {
+      if (this.textContent.includes('Seguir')) {
+        this.textContent = '✅ Siguiendo';
+        this.style.backgroundColor = '#e0e0e0';
+        this.style.color = '#000';
+        this.style.borderColor = '#e0e0e0';
+        alert('📢 Ahora sigues a Destro5');
+      } else {
+        this.textContent = '➕ Seguir';
+        this.style.backgroundColor = '#000';
+        this.style.color = '#fff';
+        this.style.borderColor = '#000';
+        alert('👋 Has dejado de seguir a Destro5');
+      }
+    });
+  }
+
+  const messageBtn = document.querySelector('.fb-message-btn');
+  if (messageBtn) {
+    messageBtn.addEventListener('click', function() {
+      // Abrir un modal o redirigir a contacto
+      alert('💬 Envía un mensaje a Destro5: destro5@urbanhouse.world');
+    });
+  }
+
+  // ============================================================
+  // 3. BOTONES DE PUBLICACIONES (Me gusta, Comentar, Compartir)
+  // ============================================================
+  const postBtns = document.querySelectorAll('.fb-post-btn');
+  postBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      const action = this.textContent.trim();
+      
+      if (action.includes('Me gusta')) {
+        if (this.style.backgroundColor === 'rgb(0, 0, 0)') {
+          this.style.backgroundColor = 'transparent';
+          this.style.color = '#000';
+          this.style.opacity = '0.6';
+          alert('👎 Ya no te gusta esta publicación');
+        } else {
+          this.style.backgroundColor = '#000';
+          this.style.color = '#fff';
+          this.style.borderRadius = '4px';
+          this.style.opacity = '1';
+          alert('👍 Te gusta esta publicación');
+        }
+      } else if (action.includes('Comentar')) {
+        const comment = prompt('💬 Escribe tu comentario:');
+        if (comment) {
+          alert('✅ Comentario publicado: "' + comment + '"');
+        }
+      } else if (action.includes('Compartir')) {
+        // Compartir enlace de la página actual
+        const url = window.location.href;
+        if (navigator.share) {
+          navigator.share({
+            title: document.title,
+            text: 'Mira el perfil de Destro5 en URBAN HOUSE WORLD',
+            url: url
+          });
+        } else {
+          // Copiar enlace al portapapeles
+          navigator.clipboard.writeText(url).then(() => {
+            alert('🔗 Enlace copiado al portapapeles');
+          });
+        }
+      }
+    });
+  });
+
+  // ============================================================
+  // 4. CARRUSEL (para lanzamientos.html)
   // ============================================================
   const carousel = document.querySelector('.carousel-wrapper');
   if (carousel) {
@@ -72,36 +146,16 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // ============================================================
-  // 3. BOTONES: MANEJO DE ENLACES
+  // 5. BOTONES DE LANZAMIENTOS (enlaces externos)
   // ============================================================
-  const buttons = document.querySelectorAll('.btn');
-  buttons.forEach(btn => {
-    // Si el botón tiene href real, no interferir
+  const externalButtons = document.querySelectorAll('.btn, .release-links .btn, .fb-social-btn');
+  externalButtons.forEach(btn => {
     if (btn.tagName === 'A' && btn.getAttribute('href') && btn.getAttribute('href') !== '#') {
       if (!btn.hasAttribute('target')) {
         btn.setAttribute('target', '_blank');
         btn.setAttribute('rel', 'noopener noreferrer');
       }
-      return;
     }
-
-    // Para botones sin href
-    btn.addEventListener('click', function(e) {
-      e.preventDefault();
-      const text = this.textContent.trim().toLowerCase();
-      
-      if (text.includes('pre-save')) {
-        window.open('https://urbanhouse.world/pre-save', '_blank');
-      } else if (text.includes('spotify')) {
-        window.open('https://open.spotify.com/', '_blank');
-      } else if (text.includes('beatport')) {
-        window.open('https://www.beatport.com/', '_blank');
-      } else if (text.includes('ver perfil') || text.includes('perfil') || text.includes('redes')) {
-        // Ya tienen enlace, no hacer nada
-      } else {
-        alert('⚡ Acción: ' + text);
-      }
-    });
   });
 
   console.log('🏛️ URBAN HOUSE WORLD · minimal radical');
