@@ -6,14 +6,18 @@
 document.addEventListener('DOMContentLoaded', function() {
 
   // ============================================================
-  // 1. RESALTAR PÁGINA ACTIVA EN EL MENÚ
+  // 1. RESALTAR PÁGINA ACTIVA EN EL MENÚ (con soporte para subcarpetas)
   // ============================================================
-  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  const currentPath = window.location.pathname;
   const navLinks = document.querySelectorAll('.nav a');
   
   navLinks.forEach(link => {
     const href = link.getAttribute('href');
-    if (href === currentPage) {
+    // Para enlaces en subcarpetas (../index.html)
+    const cleanHref = href.replace(/\.\.\//g, '');
+    const cleanPath = currentPath.replace(/\/[^/]*\.html$/, '/') + cleanHref;
+    
+    if (currentPath.includes(cleanHref) || href === currentPath) {
       link.classList.add('active');
     }
   });
@@ -52,7 +56,6 @@ document.addEventListener('DOMContentLoaded', function() {
       carousel.scrollLeft = scrollLeft - walk;
     });
 
-    // Soporte táctil
     let touchStartX = 0;
     let touchScrollLeft = 0;
 
@@ -69,14 +72,21 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // ============================================================
-  // 3. BOTONES: ACCIONES
+  // 3. BOTONES: MANEJO DE ENLACES
   // ============================================================
   const buttons = document.querySelectorAll('.btn');
   buttons.forEach(btn => {
-    btn.addEventListener('click', function(e) {
-      if (this.tagName === 'A' && this.getAttribute('href') && this.getAttribute('href') !== '#') {
-        return;
+    // Si el botón tiene href real, no interferir
+    if (btn.tagName === 'A' && btn.getAttribute('href') && btn.getAttribute('href') !== '#') {
+      if (!btn.hasAttribute('target')) {
+        btn.setAttribute('target', '_blank');
+        btn.setAttribute('rel', 'noopener noreferrer');
       }
+      return;
+    }
+
+    // Para botones sin href
+    btn.addEventListener('click', function(e) {
       e.preventDefault();
       const text = this.textContent.trim().toLowerCase();
       
@@ -86,8 +96,8 @@ document.addEventListener('DOMContentLoaded', function() {
         window.open('https://open.spotify.com/', '_blank');
       } else if (text.includes('beatport')) {
         window.open('https://www.beatport.com/', '_blank');
-      } else if (text.includes('perfil') || text.includes('redes')) {
-        window.open('https://urbanhouse.world/artists', '_blank');
+      } else if (text.includes('ver perfil') || text.includes('perfil') || text.includes('redes')) {
+        // Ya tienen enlace, no hacer nada
       } else {
         alert('⚡ Acción: ' + text);
       }
