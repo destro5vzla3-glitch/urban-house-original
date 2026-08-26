@@ -344,51 +344,97 @@ a, button {
 .items-center { align-items: center; }
 
 /* ============================================================
-   ESTILOS PARA PERFILES DE ARTISTAS
+   ESTILOS PARA PERFILES DE ARTISTAS (VERSIÓN MEJORADA)
    ============================================================ */
 
 /* ===== HEADER DEL ARTISTA ===== */
 .artist-header {
   position: relative;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
   border: 1px solid var(--color-border);
+  background-color: var(--color-bg);
+  overflow: hidden;
+}
+
+/* ===== BANNER ===== */
+.banner-wrapper {
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+  background-color: #f0f0f0;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .artist-banner {
   width: 100%;
-  height: 150px;
+  height: 100%;
   object-fit: cover;
   filter: grayscale(100%);
   transition: filter var(--transition);
+  display: block;
 }
 
 .artist-header:hover .artist-banner {
   filter: grayscale(0%);
 }
 
-.artist-info {
-  padding: 1.5rem 2rem 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.3rem;
-  border-top: 1px solid var(--color-border);
-}
-
-.artist-avatar {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid var(--color-fg);
-  margin-top: -60px;
-  margin-bottom: 0.5rem;
+/* ===== ZONA DE INFORMACIÓN DEL ARTISTA (superpuesta) ===== */
+.artist-info-wrapper {
+  position: relative;
+  padding: 0 2rem 2rem;
   background-color: var(--color-bg);
 }
 
-.artist-info h1 {
-  font-size: 2.5rem;
-  margin-bottom: 0;
+/* Contenedor flex para alinear avatar y texto */
+.artist-info-container {
+  display: flex;
+  align-items: flex-end;
+  gap: 1.5rem;
+  margin-top: -60px; /* Superposición sobre el banner */
+  position: relative;
+  z-index: 2;
+}
+
+/* ===== AVATAR ===== */
+.avatar-wrapper {
+  flex-shrink: 0;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 4px solid var(--color-bg);
+  background-color: var(--color-bg);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  position: relative;
+  z-index: 3;
+}
+
+.artist-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(100%);
+  transition: filter var(--transition);
+}
+
+.artist-header:hover .artist-avatar {
+  filter: grayscale(0%);
+}
+
+/* ===== DATOS DEL ARTISTA ===== */
+.artist-details {
+  flex: 1;
+  padding-bottom: 0.5rem;
+  padding-top: 10px;
+}
+
+.artist-details h1 {
+  font-size: 2.8rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  margin: 0;
+  line-height: 1.1;
 }
 
 .artist-genre {
@@ -396,189 +442,64 @@ a, button {
   text-transform: uppercase;
   letter-spacing: 0.08em;
   opacity: 0.6;
+  margin: 0.2rem 0 0.1rem;
 }
 
 .artist-location {
   font-size: 0.85rem;
   opacity: 0.5;
+  margin: 0;
 }
 
-/* ===== BIOGRAFÍA ===== */
-.artist-bio {
-  margin: 2rem 0;
-  padding: 1.5rem 0;
-  border-top: 1px solid var(--color-border);
-  border-bottom: 1px solid var(--color-border);
-}
-
-.artist-bio h2 {
-  font-size: 1.2rem;
-  border-bottom: none;
-  margin-bottom: 1rem;
-}
-
-.artist-bio p {
-  margin-bottom: 1rem;
-  max-width: 700px;
-  line-height: 1.7;
-}
-
-/* ===== LANZAMIENTOS DESTACADOS ===== */
-.artist-releases {
-  margin: 2rem 0;
-}
-
-.artist-releases h2 {
-  font-size: 1.2rem;
-  border-bottom: none;
-  margin-bottom: 1.5rem;
-}
-
-.release-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.release-item {
-  display: flex;
-  gap: 1.5rem;
-  align-items: center;
-  padding: 1rem;
-  border: 1px solid var(--color-border);
-}
-
-.release-cover {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  border: 1px solid var(--color-border);
-}
-
-.release-info h3 {
-  font-size: 1.1rem;
-  font-weight: 400;
-}
-
-.release-info p {
-  font-size: 0.8rem;
-  opacity: 0.6;
-  margin: 0.2rem 0 0.5rem;
-}
-
-.release-links {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
-.release-links .btn {
-  font-size: 0.6rem;
-  padding: 0.3rem 0.8rem;
-}
-
-/* ===== REDES SOCIALES ===== */
-.artist-social {
-  margin: 2rem 0;
-}
-
-.artist-social h2 {
-  font-size: 1.2rem;
-  border-bottom: none;
-  margin-bottom: 1rem;
-}
-
-.social-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.8rem;
-}
-
-.social-links .btn {
-  font-size: 0.7rem;
-  padding: 0.4rem 1.2rem;
-}
-
-/* ===== EVENTOS ===== */
-.artist-events {
-  margin: 2rem 0;
-}
-
-.artist-events h2 {
-  font-size: 1.2rem;
-  border-bottom: none;
-  margin-bottom: 1rem;
-}
-
-.event-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-}
-
-.event-list li {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 1rem 2rem;
-  padding: 0.8rem 1rem;
-  border: 1px solid var(--color-border);
-}
-
-.event-date {
-  font-weight: 500;
-  letter-spacing: 0.05em;
-}
-
-.event-name {
-  font-weight: 400;
-}
-
-.event-support {
-  font-size: 0.8rem;
-  opacity: 0.6;
-  margin-left: auto;
-}
-
-/* ===== RESPONSIVE PARA PERFILES ===== */
-@media (max-width: 640px) {
-  .artist-banner {
-    height: 150px;
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .banner-wrapper {
+    height: 160px;
   }
   
-  .artist-avatar {
-    width: 80px;
-    height: 80px;
-    margin-top: -40px;
+  .artist-info-wrapper {
+    padding: 0 1rem 1.5rem;
   }
   
-  .artist-info {
-    padding: 1rem;
-  }
-  
-  .artist-info h1 {
-    font-size: 1.8rem;
-  }
-  
-  .release-item {
+  .artist-info-container {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
+    margin-top: -50px;
+    gap: 0.5rem;
   }
   
-  .release-cover {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 1/1;
+  .avatar-wrapper {
+    width: 110px;
+    height: 110px;
+    border-width: 3px;
   }
   
-  .event-list li {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.3rem;
+  .artist-details h1 {
+    font-size: 2rem;
   }
   
-  .event-support {
-    margin-left: 0;
+  .artist-genre {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .banner-wrapper {
+    height: 120px;
+  }
+  
+  .artist-info-wrapper {
+    padding: 0 0.8rem 1.2rem;
+  }
+  
+  .avatar-wrapper {
+    width: 90px;
+    height: 90px;
+    margin-top: -45px;
+  }
+  
+  .artist-details h1 {
+    font-size: 1.6rem;
   }
 }
