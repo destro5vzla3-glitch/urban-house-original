@@ -344,60 +344,28 @@ a, button {
 .items-center { align-items: center; }
 
 /* ============================================================
-   PERFIL DE ARTISTA (estructura Facebook + estilo brutalista)
+   PERFIL DE ARTISTA (VERSIÓN SIMPLIFICADA)
    ============================================================ */
 
-/* ===== BANNER (COVER) ===== */
-.artist-cover {
-  width: 100%;
-  height: 300px;
-  background-color: #f0f0f0;
-  overflow: hidden;
-  border: 1px solid var(--color-border);
-  border-bottom: none;
+.artist-simple {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 0;
+  text-align: center;
 }
 
-.artist-cover-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: grayscale(100%);
-  transition: filter var(--transition);
-}
-
-.artist-profile:hover .artist-cover-img {
-  filter: grayscale(0%);
-}
-
-/* ===== INFO DEL PERFIL (superpuesta) ===== */
-.artist-profile-header {
-  display: flex;
-  align-items: flex-end;
-  padding: 0 2rem 1.5rem;
-  background-color: var(--color-bg);
-  border: 1px solid var(--color-border);
-  border-top: none;
-  flex-wrap: wrap;
-  position: relative;
-}
-
-/* Avatar superpuesto */
-.artist-avatar-wrapper {
-  width: 140px;
-  height: 140px;
+/* ===== FOTO ===== */
+.artist-simple-photo {
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
-  border: 4px solid var(--color-bg);
-  background-color: var(--color-bg);
-  margin-top: -70px;
-  margin-right: 1.5rem;
+  margin: 0 auto 1.5rem;
   overflow: hidden;
-  flex-shrink: 0;
-  position: relative;
-  z-index: 2;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  border: 2px solid var(--color-border);
+  background-color: #f0f0f0;
 }
 
-.artist-avatar {
+.artist-simple-photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -406,317 +374,125 @@ a, button {
   transition: filter var(--transition);
 }
 
-.artist-profile:hover .artist-avatar {
+.artist-simple-photo img:hover {
   filter: grayscale(0%);
 }
 
-/* Detalles del artista */
-.artist-profile-details {
-  flex: 1;
-  padding: 0.5rem 0;
-  min-width: 200px;
-}
-
-.artist-profile-details h1 {
-  font-size: 2.4rem;
+/* ===== NOMBRE Y GÉNERO ===== */
+.artist-simple-name {
+  font-size: 2.8rem;
   font-weight: 400;
-  margin: 0;
   letter-spacing: 0.04em;
+  margin: 0 0 0.2rem;
 }
 
-.artist-profile-details .artist-genre {
-  font-size: 0.95rem;
+.artist-simple-genre {
+  font-size: 1rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   opacity: 0.6;
-  margin: 0.2rem 0 0.1rem;
+  margin: 0 0 0.2rem;
 }
 
-.artist-profile-details .artist-location {
+.artist-simple-location {
   font-size: 0.85rem;
   opacity: 0.5;
-  margin: 0;
+  margin: 0 0 1.5rem;
 }
 
-.artist-bio {
-  font-size: 0.95rem;
-  line-height: 1.6;
+/* ===== BIOGRAFÍA ===== */
+.artist-simple-bio {
+  text-align: left;
   max-width: 600px;
-  margin: 0.8rem 0;
+  margin: 0 auto 2rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.artist-simple-bio p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 0.8rem;
   opacity: 0.8;
 }
 
-.artist-social-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 0.5rem;
-}
-
-.artist-social-links .btn {
-  font-size: 0.65rem;
-  padding: 0.3rem 0.8rem;
-}
-
-/* ===== CONTENIDO PRINCIPAL (grid) ===== */
-.artist-content {
-  display: flex;
-  gap: 1.5rem;
-  padding: 1.5rem 0;
-  border: 1px solid var(--color-border);
-  border-top: none;
-  background-color: var(--color-bg);
-  padding: 1.5rem 2rem;
-}
-
-.artist-sidebar {
-  flex: 0 0 280px;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.artist-main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-/* ===== TARJETAS ===== */
-.artist-card {
-  border: 1px solid var(--color-border);
-  padding: 1.2rem 1.5rem;
-  background-color: var(--color-bg);
-}
-
-.artist-card-title {
-  font-size: 0.9rem;
-  font-weight: 400;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  border-bottom: 1px solid var(--color-border);
-  padding-bottom: 0.6rem;
-  margin-bottom: 0.8rem;
-}
-
-/* Lista de información */
-.artist-info-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.artist-info-list li {
-  font-size: 0.85rem;
-  padding: 0.4rem 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.artist-info-list li:last-child {
-  border-bottom: none;
-}
-
-.artist-info-list li strong {
-  font-weight: 500;
-}
-
-/* Lista de eventos */
-.artist-event-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.artist-event-item {
-  display: flex;
-  flex-direction: column;
-  padding: 0.4rem 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.artist-event-item:last-child {
-  border-bottom: none;
-}
-
-.artist-event-date {
-  font-size: 0.75rem;
-  opacity: 0.6;
-}
-
-.artist-event-name {
-  font-size: 0.9rem;
-}
-
-/* ===== PUBLICACIONES (POSTS) ===== */
-.artist-post {
-  border: 1px solid var(--color-border);
-  padding: 1rem 1.2rem;
-  margin-bottom: 1rem;
-  background-color: var(--color-bg);
-}
-
-.artist-post:last-child {
+.artist-simple-bio p:last-child {
   margin-bottom: 0;
 }
 
-.artist-post-header {
+/* ===== ENLACES ===== */
+.artist-simple-links {
   display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  margin-bottom: 0.8rem;
   flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-bottom: 2.5rem;
 }
 
-.artist-post-avatar {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 1px solid var(--color-border);
-  filter: grayscale(100%);
-}
-
-.artist-post-user {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-.artist-post-user strong {
-  font-size: 0.9rem;
-  font-weight: 500;
-}
-
-.artist-post-user span {
+.artist-simple-links .btn {
   font-size: 0.7rem;
-  opacity: 0.5;
+  padding: 0.4rem 1.2rem;
 }
 
-.artist-post-date {
-  font-size: 0.7rem;
-  opacity: 0.4;
-}
-
-.artist-post-content p {
-  font-size: 0.9rem;
-  line-height: 1.5;
-  margin: 0 0 0.8rem 0;
-}
-
-.artist-post-image {
-  background-color: #f5f5f5;
-  border: 1px solid var(--color-border);
-  padding: 1.5rem;
-  text-align: center;
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
-  color: #888;
-  text-transform: uppercase;
-}
-
-.artist-post-actions {
-  display: flex;
-  gap: 1.5rem;
-  margin-top: 0.8rem;
-  padding-top: 0.6rem;
+/* ===== LANZAMIENTOS SIMPLIFICADOS ===== */
+.artist-simple-releases {
   border-top: 1px solid var(--color-border);
+  padding-top: 1.5rem;
 }
 
-.artist-post-btn {
-  background: none;
-  border: none;
-  color: var(--color-fg);
-  font-size: 0.75rem;
-  padding: 0.2rem 0.4rem;
-  cursor: pointer;
-  opacity: 0.5;
-  transition: all var(--transition);
-  font-family: var(--font-sans);
+.artist-simple-releases h2 {
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-bottom: none;
+  margin-bottom: 1rem;
 }
 
-.artist-post-btn:hover {
-  opacity: 1;
-  background-color: #f0f0f0;
+.release-item-simple {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-bg);
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.release-title {
+  font-size: 0.9rem;
+}
+
+.release-status {
+  font-size: 0.7rem;
+  opacity: 0.6;
+  letter-spacing: 0.04em;
 }
 
 /* ===== RESPONSIVE ===== */
-@media (max-width: 900px) {
-  .artist-content {
-    flex-direction: column;
-    padding: 1rem;
-  }
-  
-  .artist-sidebar {
-    flex: 1;
-  }
-  
-  .artist-profile-header {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 0 1.5rem 1.5rem;
-  }
-  
-  .artist-avatar-wrapper {
-    margin-top: -50px;
-    width: 110px;
-    height: 110px;
-    margin-right: 0;
-  }
-  
-  .artist-profile-details {
-    text-align: center;
-  }
-  
-  .artist-social-links {
-    justify-content: center;
-  }
-  
-  .artist-profile-details h1 {
-    font-size: 1.8rem;
-  }
-  
-  .artist-bio {
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-
 @media (max-width: 640px) {
-  .artist-cover {
+  .artist-simple {
+    padding: 1rem 0;
+  }
+  
+  .artist-simple-photo {
+    width: 150px;
     height: 150px;
   }
   
-  .artist-avatar-wrapper {
-    width: 90px;
-    height: 90px;
-    margin-top: -40px;
+  .artist-simple-name {
+    font-size: 2rem;
   }
   
-  .artist-profile-header {
-    padding: 0 1rem 1.2rem;
+  .artist-simple-bio {
+    padding: 1rem 0;
   }
   
-  .artist-profile-details h1 {
-    font-size: 1.5rem;
-  }
-  
-  .artist-content {
-    padding: 0.8rem;
-  }
-  
-  .artist-card {
-    padding: 0.8rem 1rem;
-  }
-  
-  .artist-post {
-    padding: 0.8rem;
-  }
-  
-  .artist-post-actions {
-    gap: 0.8rem;
-    flex-wrap: wrap;
+  .release-item-simple {
+    flex-direction: column;
+    gap: 0.3rem;
   }
 }
 
